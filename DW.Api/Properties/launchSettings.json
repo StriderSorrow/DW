@@ -1,0 +1,55 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:30998",
+      "sslPort": 44321
+    }
+  },
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:5009",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DATABASENAME": "DwDb",
+        "DATABASEHOST": "localhost",
+        "DATABASEPORT": "5432",
+        "DATABASEPASSWORD": "P@SSW0RD",
+        "DATABASEUSER": "postgres",
+        "SECRETJWT": "q32-094p8r7nmyqe",
+        "EXPIRYTIMEFRAME": "9999.99:99:99"
+      }
+    },
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7145;http://localhost:5009",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DATABASENAME": "DwDb",
+        "DATABASEHOST": "localhost",
+        "DATABASEPORT": "5432",
+        "DATABASEPASSWORD": "P@SSW0RD",
+        "DATABASEUSER": "postgres",
+        "SECRETJWT": "q32-094p8r7nmyqe",
+        "EXPIRYTIMEFRAME": "9999.99:99:99"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
