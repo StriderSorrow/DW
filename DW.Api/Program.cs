@@ -30,7 +30,7 @@ builder.Services.AddDbContext<DwDbContext>(options => options.UseNpgsql(connecti
 var tempbuilder = new DbContextOptionsBuilder<DwDbContext>();
 tempbuilder.UseNpgsql(connectionString);
 var tempdb = new DwDbContext(tempbuilder.Options);
-tempdb.Database.Migrate();
+//tempdb.Database.Migrate();
 
 builder.Services.Configure<JwtConfig>(config =>
 {
@@ -47,7 +47,7 @@ var tokenValidationParameters = new TokenValidationParameters
     ValidateAudience = false,
     ValidateLifetime = true,
     RequireExpirationTime = false,
-    //ClockSkew = TimeSpan.Zero,
+    ClockSkew = TimeSpan.Zero,
 };
 builder.Services.AddSingleton(tokenValidationParameters);
 builder.Services.AddAuthentication(options =>
@@ -94,14 +94,24 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddDefaultIdentity<DwUser>(options=>options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<DwDbContext>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+    policy =>
+    {
+        //policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        policy.SetIsOriginAllowed(x => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 app.Urls.Add("http://0.0.0.0:35467");
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
+app.UseSwagger();
     app.UseSwaggerUI();
 //}
 

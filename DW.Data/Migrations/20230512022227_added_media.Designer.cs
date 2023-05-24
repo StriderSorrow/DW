@@ -3,6 +3,7 @@ using System;
 using DW.Data.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DW.Data.Migrations
 {
     [DbContext(typeof(DwDbContext))]
-    partial class DwDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230512022227_added_media")]
+    partial class added_media
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,14 +238,10 @@ namespace DW.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("DwScriptLineId")
+                    b.Property<long>("LineId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("OriginalText")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TranslatedText")
+                    b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -254,7 +253,7 @@ namespace DW.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DwScriptLineId");
+                    b.HasIndex("LineId");
 
                     b.HasIndex("UpdaterId");
 
@@ -313,7 +312,7 @@ namespace DW.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
-                    b.Property<short?>("TimeZone")
+                    b.Property<short>("TimeZone")
                         .HasColumnType("smallint");
 
                     b.Property<string>("Town")
@@ -336,29 +335,6 @@ namespace DW.Data.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("DW.Data.Database.Entities.DwUserConfirmation", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("MailCode")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Confirmations");
                 });
 
             modelBuilder.Entity("DwCharacterDwMedia", b =>
@@ -692,24 +668,19 @@ namespace DW.Data.Migrations
 
             modelBuilder.Entity("DW.Data.Database.Entities.DwTranslateHistory", b =>
                 {
-                    b.HasOne("DW.Data.Database.Entities.DwScriptLine", null)
+                    b.HasOne("DW.Data.Database.Entities.DwScriptLine", "Line")
                         .WithMany("History")
-                        .HasForeignKey("DwScriptLineId");
+                        .HasForeignKey("LineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DW.Data.Database.Entities.DwUser", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdaterId");
 
+                    b.Navigation("Line");
+
                     b.Navigation("Updater");
-                });
-
-            modelBuilder.Entity("DW.Data.Database.Entities.DwUserConfirmation", b =>
-                {
-                    b.HasOne("DW.Data.Database.Entities.DwUser", "User")
-                        .WithMany("Confirmations")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DwCharacterDwMedia", b =>
@@ -890,8 +861,6 @@ namespace DW.Data.Migrations
             modelBuilder.Entity("DW.Data.Database.Entities.DwUser", b =>
                 {
                     b.Navigation("Characters");
-
-                    b.Navigation("Confirmations");
 
                     b.Navigation("CreatedProjects");
 

@@ -15,4 +15,5 @@ namespace DW.Data.Database.Entities
         public DateOnly Deadline { get; set; }
         public DwUser Executor { get; set; }
     }
+
 }

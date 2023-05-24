@@ -3,6 +3,7 @@ using System;
 using DW.Data.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DW.Data.Migrations
 {
     [DbContext(typeof(DwDbContext))]
-    partial class DwDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230519081141_Confirmation")]
+    partial class Confirmation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -313,7 +316,7 @@ namespace DW.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
-                    b.Property<short?>("TimeZone")
+                    b.Property<short>("TimeZone")
                         .HasColumnType("smallint");
 
                     b.Property<string>("Town")

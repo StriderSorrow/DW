@@ -26,6 +26,5 @@ namespace DW.Data.Database.Entities
         public ICollection<DwProject> Projects { get; set; }
         public ICollection<DwTask> Tasks { get; set; }
         public ICollection<DwMedia> Medias { get; set; }
-
     }
 }

@@ -17,13 +17,13 @@
       "applicationUrl": "http://localhost:5009",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASENAME": "DwDb",
+        "DATABASENAME": "dwdb",
         "DATABASEHOST": "localhost",
         "DATABASEPORT": "5432",
-        "DATABASEPASSWORD": "P@SSW0RD",
+        "DATABASEPASSWORD": "_Telk0nt@R_",
         "DATABASEUSER": "postgres",
-        "SECRETJWT": "q32-094p8r7nmyqe",
-        "EXPIRYTIMEFRAME": "9999.99:99:99"
+        "SECRETJWT": "q32f094p8r7nmyqeq32f094p8r7nmyqe",
+        "EXPIRYTIMEFRAME": "10000.00:00:00"
       }
     },
     "https": {
@@ -34,13 +34,13 @@
       "applicationUrl": "https://localhost:7145;http://localhost:5009",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASENAME": "DwDb",
+        "DATABASENAME": "dwdb",
         "DATABASEHOST": "localhost",
         "DATABASEPORT": "5432",
-        "DATABASEPASSWORD": "P@SSW0RD",
+        "DATABASEPASSWORD": "_Telk0nt@R_",
         "DATABASEUSER": "postgres",
-        "SECRETJWT": "q32-094p8r7nmyqe",
-        "EXPIRYTIMEFRAME": "9999.99:99:99"
+        "SECRETJWT": "q32f094p8r7nmyqeq32f094p8r7nmyqe",
+        "EXPIRYTIMEFRAME": "10000.00:00:00"
       }
     },
     "IIS Express": {
